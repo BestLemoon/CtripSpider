@@ -1,2 +1,23 @@
 # CtripSpider
 Ctrip Airlines Spider with verification cracker
+
+## 免责声明：
+**本项目仅供技术交流，遵循robots.txt且仅对公开信息做了爬取，任何二次开发的盈利与本项目无关，若侵犯了贵公司的权益，请联系我删除。[email](mailto:admin@lemoon.ml)**
+
+
+## 如何运行：
+
+```python
+pip install -r requiremens.txt
+python main.py
+```
+
+在运行之前，请务必自行修改/填充main.py和send_messages.py里面的信息
+
+## 实现的功能：
+1.监控具体某一天的**一架航班**的价格和余票并且通过wechat和email提醒，若需更多天或者更多航班架次可以自行进行再次开发
+2.自动识别验证码，包括滑动验证码和点击文字验证码（调用Tencent OCR api）,也可自行替换为baidu ocr
+
+
+
+
