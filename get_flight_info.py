@@ -4,22 +4,22 @@ import re
 import prettytable as pt
 from Get_token import *
 from Get_City_infos import *
-import crack
+from crack import crack
 
 city_infos = get_city_infos()
 
 
 class get_flight_info:
-    def __init__(self, dcityname, acityname, date, flightnumber,price, seat):
-        self.flightnumber=flightnumber
+    def __init__(self, dcityname, acityname, date, flightnumber, price, seat):
         self.status = 0
         self.price = price
+        self.flightnumber = flightnumber
         if seat is None:
             seat = 5
         self.seat = seat
         self.date = date
-        self.acityname = acityname  
-        self.dcityname = dcityname  
+        self.acityname = acityname
+        self.dcityname = dcityname
         self.dcity = city_infos.get(self.dcityname)
         self.acity = city_infos.get(self.acityname)
         self.token = get_token(self.dcityname, self.acityname)
@@ -28,7 +28,7 @@ class get_flight_info:
             "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36",
             "content-type": "application/json",
             "referer": "https://flights.ctrip.com/itinerary/oneway/",
-            "cookie": ""
+            "cookie": ""       #可在第一次破解反爬后加入到源码，减少以后触发反爬的次数
         }
 
         self.payload = {"flightWay": "Oneway",
@@ -53,10 +53,10 @@ class get_flight_info:
         print(res[:100])
         datas = json.loads(res)
         # print(type(datas))
-        # 判断是否触发反爬，调用selenium破解验证
         if datas["data"]["error"] is not None:
             print('开始破解反爬')
-            self.headers['cookie'] = crack.crack()
+            cracker = crack()
+            self.headers['cookie'] = cracker.main()
             print('破解完成')
             res = requests.post(self.url, data=json.dumps(self.payload), headers=self.headers).text
             print(res[:100])
@@ -70,7 +70,7 @@ class get_flight_info:
                 continue
             raw_path = path
         # print(raw_path)
-        routeList_num = re.findall(re.compile(r'\d{2}'), raw_path)[0]
+        routeList_num = re.compile(r'\d+').findall(raw_path)[0]
         # print(routeList_num)
 
         table = pt.PrettyTable()

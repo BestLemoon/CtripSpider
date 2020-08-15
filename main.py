@@ -1,9 +1,9 @@
 from send_messages import *
-from get_flight_info import *
+from get_flight_info import get_flight_info
 import time
 
 if __name__ == "__main__":
-    spider = get_flight_info(dcityname="杭州", acityname="北京", date="2020-09-01", flightnumber='AB1234',price=700, seat=3)
+    spider = get_flight_info(dcityname="杭州", acityname="重庆", date="2020-09-01",flightnumber='MF8407', price=700, seat=3)
     while True:
         status, price, seat = spider.get_infos()
         if status:
@@ -14,4 +14,4 @@ if __name__ == "__main__":
                 messages = "机票要被抢完咯~~\n当前仅剩" + str(seat) + "张票啦~~"
             send_email_messages(messages)
             send_wechat_messages(messages)
-        # time.sleep(300)
+        time.sleep(30)
