@@ -1,6 +1,11 @@
 # CtripSpider
 Ctrip Airlines Spider with verification cracker
 
+##2020-12-30更新
+由于Ctrip主站反爬机制更新，现在从m.ctrip.com入手更新了整套系统。
+
+
+
 ## 免责声明：
 **本项目仅供技术交流，遵循robots.txt且仅对公开信息做了爬取，任何二次开发的盈利与本项目无关，若侵犯了贵公司的权益，请联系我删除。[email](mailto:admin@lemoon.ml)**
 

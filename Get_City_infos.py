@@ -1,7 +1,7 @@
 import requests
 import json
 
-# 爬取城市简称和机场缩写
+
 def get_city_infos():
     city_infos = {}
     url = 'https://flights.ctrip.com/itinerary/api/poi/get'
